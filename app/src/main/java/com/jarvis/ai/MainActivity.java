@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
     private EditText input;
     private TextView status;
     private TextToSpeech speech;
+    private TextView typingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class MainActivity extends Activity {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setBackgroundColor(Color.rgb(5, 7, 10));
 
-        // Header
         LinearLayout header = new LinearLayout(this);
         header.setOrientation(LinearLayout.VERTICAL);
         header.setGravity(Gravity.CENTER);
@@ -73,21 +73,13 @@ public class MainActivity extends Activity {
 
         header.addView(title);
         header.addView(status);
-
         root.addView(header);
 
-        // Chat area
         ScrollView scrollView = new ScrollView(this);
 
         chatLayout = new LinearLayout(this);
         chatLayout.setOrientation(LinearLayout.VERTICAL);
         chatLayout.setPadding(20, 10, 20, 20);
-
-        addMessage(
-                "JARVIS",
-                "Hello. I am JARVIS. How can I assist you?",
-                true
-        );
 
         scrollView.addView(chatLayout);
 
@@ -101,3 +93,56 @@ public class MainActivity extends Activity {
 
         root.addView(scrollView, chatParams);
 
+        addMessage(
+                "JARVIS",
+                "Hello. I am JARVIS. How can I assist you?",
+                true
+        );
+
+        LinearLayout controls = new LinearLayout(this);
+        controls.setOrientation(LinearLayout.HORIZONTAL);
+        controls.setPadding(12, 10, 12, 18);
+        controls.setGravity(Gravity.CENTER_VERTICAL);
+
+        input = new EditText(this);
+        input.setHint("Ask JARVIS anything...");
+        input.setHintTextColor(Color.GRAY);
+        input.setTextColor(Color.WHITE);
+        input.setTextSize(16);
+        input.setSingleLine(true);
+        input.setPadding(20, 0, 15, 0);
+        input.setBackgroundColor(Color.rgb(25, 30, 36));
+
+        LinearLayout.LayoutParams inputParams =
+                new LinearLayout.LayoutParams(0, 58);
+
+        inputParams.weight = 1;
+
+        controls.addView(input, inputParams);
+
+        Button voice = new Button(this);
+        voice.setText("🎙");
+        voice.setTextSize(20);
+        voice.setTextColor(Color.CYAN);
+        voice.setBackgroundColor(Color.TRANSPARENT);
+
+        controls.addView(
+                voice,
+                new LinearLayout.LayoutParams(60, 58)
+        );
+
+        Button send = new Button(this);
+        send.setText("SEND");
+        send.setTextColor(Color.BLACK);
+        send.setTextSize(12);
+        send.setTypeface(Typeface.DEFAULT_BOLD);
+        send.setBackgroundColor(Color.CYAN);
+
+        controls.addView(
+                send,
+                new LinearLayout.LayoutParams(85, 58)
+        );
+
+        root.addView(controls);
+
+        setContentView(root);
