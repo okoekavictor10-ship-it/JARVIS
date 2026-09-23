@@ -243,4 +243,6 @@ public class MainActivity extends Activity {
             String sender,
             String message,
             boolean jarvis
-    )
+            );
+    }
+}
