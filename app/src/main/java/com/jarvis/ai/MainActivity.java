@@ -1,7 +1,6 @@
 package com.jarvis.ai;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,24 +23,13 @@ public class MainActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.sendButton);
         statusText = findViewById(R.id.statusText);
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        sendButton.setOnClickListener(v -> {
+            String message = inputText.getText().toString().trim();
 
-                String question = inputText.getText().toString().trim();
-
-                if (question.isEmpty()) {
-                    statusText.setText("Please type something first.");
-                    return;
-                }
-
-                statusText.setText(
-                        "JARVIS received:\n\n"
-                                + question
-                                + "\n\nAI response system is ready."
-                );
-
-                inputText.setText("");
+            if (message.isEmpty()) {
+                statusText.setText("Please type something first.");
+            } else {
+                statusText.setText("JARVIS received: " + message);
             }
         });
     }
