@@ -1,4 +1,3 @@
-
 package com.jarvis.ai;
 
 import android.os.Bundle;
@@ -13,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText inputText;
     private Button sendButton;
-    private TextView responseText;
+    private TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         inputText = findViewById(R.id.inputText);
         sendButton = findViewById(R.id.sendButton);
-        responseText = findViewById(R.id.responseText);
+        statusText = findViewById(R.id.statusText);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
                 String question = inputText.getText().toString().trim();
 
                 if (question.isEmpty()) {
-                    responseText.setText("Please type something first.");
+                    statusText.setText("Please type something first.");
                     return;
                 }
 
-                responseText.setText(
-                        "JARVIS received:\n\n" + question
+                statusText.setText(
+                        "JARVIS received:\n\n"
+                                + question
                                 + "\n\nAI response system is ready."
                 );
 
